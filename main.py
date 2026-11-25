@@ -17,6 +17,8 @@ def main() -> None:
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
     os.chmod("/output/entry.txt", 0o644)
+    with open("/output/entry.txt", "rb") as f:
+        assert f.read() == ENTRY.encode("utf-8"), "written bytes differ from entry"
 
 if __name__ == "__main__":
     main()
